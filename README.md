@@ -1,11 +1,11 @@
 ## Polygonize
 An algorithm to polygonize images. Make images more concise, an effect like paper cut in photoshop. Also support to fix the direction of edges to make them more regular.
 
-![wave_fix](Pics\wave_fix.png)
+![wave_fix](./Pics/wave_fix.png)
 
 [The Great Wave off Kanagawa](https://en.wikipedia.org/wiki/The_Great_Wave_off_Kanagawa), [Katsushika Hokusa](https://en.wikipedia.org/wiki/Hokusai), 1831
 
-![the_starry_night](Pics\the_starry_night.png)
+![the_starry_night](./Pics/the_starry_night.png)
 
  [The Starry Night](https://en.wikipedia.org/wiki/The_Starry_Night), [Vincent van Gogh](https://en.wikipedia.org/wiki/Vincent_van_Gogh), 1889
 
