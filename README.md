@@ -39,4 +39,5 @@ fix-option == 2: create rectangle like polygons, with all lines vertical or hori
 
 ### Next
 * Add more polygon edge diretion fix options
+* Remove noise
 * SVG format support
