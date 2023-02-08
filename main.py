@@ -77,7 +77,8 @@ def get_polygons(super_pixel_mask):
         if (len(approx)) < 3:
             continue
         else:
-            approx_fix = fix_direction(approx.copy().tolist())
+            # approx_fix = fix_direction_octagon(approx.copy().tolist())
+            approx_fix = fix_direction_square(approx.copy().tolist())
             approx_polygons.append(approx)
             approx_polygons_fix.append(approx_fix)
             color_set_used.append(color_set[i])

@@ -1,4 +1,4 @@
-from skimage import data, io, segmentation, color
+from skimage import data, segmentation, color
 from skimage.future import graph
 import numpy as np
 import cv2
