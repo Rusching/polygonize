@@ -9,6 +9,10 @@ An algorithm to polygonize images. Make images more concise, an effect like pape
 
  [The Starry Night](https://en.wikipedia.org/wiki/The_Starry_Night), [Vincent van Gogh](https://en.wikipedia.org/wiki/Vincent_van_Gogh), 1889
 
+![portrait_of_unknown_woman_squ](./Pics/portrait_of_unknown_woman_squ.png)
+
+ [Portrait_of_an_Unknown_Woman](https://en.wikipedia.org/wiki/Portrait_of_an_Unknown_Woman), [ Ivan Kramskoi](https://en.wikipedia.org/wiki/Ivan_Kramskoi), 1889
+
 Core ideas:
 
 * Using Superpixel to segment images
@@ -27,8 +31,10 @@ Core ideas:
 
 ### Usage
 
-```
-python main.py input.jpg output.jpg [-d]
+```shell
+python main.py input.jpg output.jpg [-d fix-option]
+fix-option == 1: create octagon like polygons, with all lines vertical or horizontal or 45 degrees oblique
+fix-option == 2: create rectangle like polygons, with all lines vertical or horizontal
 ```
 
 ### Next

@@ -4,7 +4,7 @@ import argparse
 
 ORIGIN_IMAGE_PATH = "Pics/wavs.jpg"
 OUTPUT_FILE_NAME = "output.png"
-IS_DIRECTION_FIX = True
+IS_DIRECTION_FIX = 0
 
 CV2_APPROXPOLY_EPSILON = 6
 ROUGH_SUPER_PIXEL_COMPACTNESS = 1
@@ -21,7 +21,7 @@ def parse_args():
     
     parser.add_argument('input_file_name')   
     parser.add_argument('output_file_name')
-    parser.add_argument('-d', '--diretion_fix', action='store_true')      
+    parser.add_argument('-d', '--diretion_fix', type=int, default='0')      
     args = parser.parse_args()
     global ORIGIN_IMAGE_PATH, OUTPUT_FILE_NAME, IS_DIRECTION_FIX
     ORIGIN_IMAGE_PATH = args.input_file_name
@@ -77,13 +77,14 @@ def get_polygons(super_pixel_mask):
         if (len(approx)) < 3:
             continue
         else:
-            # approx_fix = fix_direction_octagon(approx.copy().tolist())
-            approx_fix = fix_direction_square(approx.copy().tolist())
+            if IS_DIRECTION_FIX == 1:
+                approx = fix_direction_octagon(approx.copy().tolist())
+            elif IS_DIRECTION_FIX == 2:
+                approx = fix_direction_square(approx.copy().tolist())
             approx_polygons.append(approx)
-            approx_polygons_fix.append(approx_fix)
             color_set_used.append(color_set[i])
 
-    return approx_polygons, approx_polygons_fix, color_set_used
+    return approx_polygons, color_set_used
 
 
 def main(rough_super_pixel_mask):
@@ -99,14 +100,10 @@ def main(rough_super_pixel_mask):
             canvas[h][w][1] = average_color[1]
             canvas[h][w][2] = average_color[0]
 
-    ps, ps_f, cs = get_polygons(rough_super_pixel_mask)
+    ps, cs = get_polygons(rough_super_pixel_mask)
     
-    if IS_DIRECTION_FIX:
-        for i in range(len(ps)):
-            cv2.drawContours(canvas, [np.array(ps_f[i]).astype(int)], 0, (int(cs[i][2]), int(cs[i][1]), int(cs[i][0])), -1)
-    else:
-        for i in range(len(ps)):
-            cv2.drawContours(canvas, [np.array(ps[i]).astype(int)], 0, (int(cs[i][2]), int(cs[i][1]), int(cs[i][0])), -1)
+    for i in range(len(ps)):
+        cv2.drawContours(canvas, [np.array(ps[i]).astype(int)], 0, (int(cs[i][2]), int(cs[i][1]), int(cs[i][0])), -1)
 
     cv2.imwrite(OUTPUT_FILE_NAME, canvas)
 
