@@ -11,7 +11,7 @@ An algorithm to polygonize images. Make images more concise, an effect like pape
 
 ![portrait_of_unknown_woman_squ](./Pics/portrait_of_unknown_woman_squ.png)
 
- [Portrait_of_an_Unknown_Woman](https://en.wikipedia.org/wiki/Portrait_of_an_Unknown_Woman), [ Ivan Kramskoi](https://en.wikipedia.org/wiki/Ivan_Kramskoi), 1889
+ [Portrait of an Unknown Woman](https://en.wikipedia.org/wiki/Portrait_of_an_Unknown_Woman), [ Ivan Kramskoi](https://en.wikipedia.org/wiki/Ivan_Kramskoi), 1889
 
 Core ideas:
 
