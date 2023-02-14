@@ -1,6 +1,8 @@
 from rag_merging import *
 from direction_fix import *
+from svg import *
 import argparse
+import os
 
 ORIGIN_IMAGE_PATH = "Pics/wavs.jpg"
 OUTPUT_FILE_NAME = "output.png"
@@ -102,10 +104,13 @@ def main(rough_super_pixel_mask):
 
     ps, cs = get_polygons(rough_super_pixel_mask)
     
-    for i in range(len(ps)):
-        cv2.drawContours(canvas, [np.array(ps[i]).astype(int)], 0, (int(cs[i][2]), int(cs[i][1]), int(cs[i][0])), -1)
 
-    cv2.imwrite(OUTPUT_FILE_NAME, canvas)
+    if os.path.splitext(OUTPUT_FILE_NAME)[1].lower() == '.svg':
+        to_svg(height, width, ps, cs, average_color, OUTPUT_FILE_NAME)
+    else:
+        for i in range(len(ps)):
+            cv2.drawContours(canvas, [np.array(ps[i]).astype(int)], 0, (int(cs[i][2]), int(cs[i][1]), int(cs[i][0])), -1)
+        cv2.imwrite(OUTPUT_FILE_NAME, canvas)
 
 
 if __name__ == '__main__':

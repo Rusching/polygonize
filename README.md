@@ -36,8 +36,8 @@ python main.py input.jpg output.jpg [-d fix-option]
 fix-option == 1: create octagon like polygons, with all lines vertical or horizontal or 45 degrees oblique
 fix-option == 2: create rectangle like polygons, with all lines vertical or horizontal
 ```
+Support SVG format output :yum:
 
 ### Next
 * Add more polygon edge diretion fix options
 * Remove noise
-* SVG format support
