@@ -40,4 +40,5 @@ Support SVG format output :yum:
 
 ### Next
 * Add more polygon edge diretion fix options
+* Add pre-processing to increase the contrast to make the segmentation effect more obvious
 * Remove noise
