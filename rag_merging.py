@@ -1,3 +1,12 @@
+"""
+perform hierarchical merging on region boundary Region Adjacency
+Graphs (RAGs). Region boundary RAGs can be constructed with the
+skimage.graph.rag_boundary() function. The regions with the lowest
+edge weights are successively merged until there is no edge with
+weight less than thresh. The hierarchical merging is done through
+the skimage.graph.merge_hierarchical() function. Quate from
+https://scikit-image.org/docs/stable/auto_examples/segmentation/plot_boundary_merge.html
+"""
 from skimage import data, segmentation, color
 from skimage.future import graph
 import numpy as np
@@ -7,6 +16,7 @@ import cv2
 # 2. Create region adjacency graph
 # 3. Merge adjacent regions base on certain thershold
 
+__all__ = ["super_pixel"]
 
 def _weight_mean_color(graph, src, dst, n):
     """Callback to handle merging nodes by recomputing mean color.
@@ -53,22 +63,21 @@ def merge_mean_color(graph, src, dst):
 
 
 
-def super_pixel(img_path, p1, p2, p3, p4, p5):
-        img = data.coffee()
-        img = cv2.imread(img_path)
-        img = img[:, :, [2, 1, 0]]
+def super_pixel(img_path, p_1, p_2, p_3, p_4, p_5):
+    """return superpixel merging result"""
+    img = data.coffee()
+    img = cv2.imread(img_path)
+    img = img[:, :, [2, 1, 0]]
 
 
-        labels = segmentation.slic(img, compactness=p1, n_segments=p2, start_label=p3, sigma=p4)
-        g = graph.rag_mean_color(img, labels)
+    labels = segmentation.slic(img, compactness=p_1, n_segments=p_2, start_label=p_3, sigma=p_4)
+    rag_graph = graph.rag_mean_color(img, labels)
 
-        labels2 = graph.merge_hierarchical(labels, g, thresh=p5, rag_copy=False,
-                                        in_place_merge=True,
-                                        merge_func=merge_mean_color,
-                                        weight_func=_weight_mean_color)
+    labels2 = graph.merge_hierarchical(labels, rag_graph, thresh=p_5, rag_copy=False,
+                                    in_place_merge=True,
+                                    merge_func=merge_mean_color,
+                                    weight_func=_weight_mean_color)
 
 
-        out = color.label2rgb(labels2, img, kind='avg', bg_label=0)
-                
-        return out  
-
+    out = color.label2rgb(labels2, img, kind='avg', bg_label=0)
+    return out

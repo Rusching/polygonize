@@ -3,6 +3,8 @@ Scalable Vector Graphics (SVG) is an XML-based vector image format.
 This file help to render image in svg format.
 """
 
+__all__ = ["to_svg"]
+
 def hex_str(value: int) -> str:
     """convert hex value to string"""
     return '0' + hex(value)[2:] if value < 16 else hex(value)[2:]

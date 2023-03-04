@@ -3,6 +3,7 @@ Fix the direction of polygon contour to certain directions
 by inserting key points between every 2 points
 """
 
+__all__ = ["fix_direction_octagon", "fix_direction_square"]
 
 def fix_direction_octagon(poly):
     """fix direction to octagon like"""
